@@ -3,12 +3,12 @@ import subprocess
 from datetime import datetime, timedelta
 import os
 
-# 设置开始时间
-start_time = datetime(2019, 5, 16, 10, 19, 0)
-# 结束时间为当前时间
-end_time = datetime.now()
-
 def main():
+    # 设置开始时间
+    start_time = datetime(2019, 5, 16, 10, 19, 0)
+    # 结束时间为当前时间
+    end_time = datetime.now()
+
     # 获取用户输入的邮箱和 GitHub 登录 Token
     email = input("请输入您的邮箱地址: ")
     user = input("请输入您的用户名: ")
