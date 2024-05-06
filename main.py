@@ -12,7 +12,6 @@ def main():
     # 获取用户输入的邮箱和 GitHub 登录 Token
     email = input("请输入您的邮箱地址: ")
     user = input("请输入您的用户名: ")
-    token = input("请输入您的 GitHub 登录 Token: ")
     repo_url = input("请输入您的仓库 URL: ")
     
     random.seed()
@@ -20,10 +19,8 @@ def main():
     # 设置 Git 用户信息
     config_email_cmd = ['git', 'config', '--global', 'user.email', email]
     config_user_cmd = ['git', 'config', '--global', 'user.name', user]
-    config_token_cmd = ['git', 'config', '--global', 'user.password', token]
     subprocess.run(config_email_cmd, check=True)
     subprocess.run(config_user_cmd, check=True)
-    subprocess.run(config_token_cmd, check=True)
 
     # 克隆仓库
     subprocess.run(['git', 'clone', repo_url, 'repo-folder'], check=True)
