@@ -1,6 +1,7 @@
 import random
 import subprocess
 from datetime import datetime, timedelta
+import os
 
 # 设置开始时间
 start_time = datetime(2019, 5, 16, 10, 19, 0)
@@ -12,6 +13,7 @@ def main():
     email = input("请输入您的邮箱地址: ")
     user = input("请输入您的用户名: ")
     token = input("请输入您的 GitHub 登录 Token: ")
+    repo_url = input("请输入您的仓库 URL: ")
     
     random.seed()
 
@@ -22,6 +24,11 @@ def main():
     subprocess.run(config_email_cmd, check=True)
     subprocess.run(config_user_cmd, check=True)
     subprocess.run(config_token_cmd, check=True)
+
+    # 克隆仓库
+    subprocess.run(['git', 'clone', repo_url, 'repo-folder'], check=True)
+    # 进入仓库目录
+    os.chdir('repo-folder')
 
     # 当结束时间晚于开始时间时循环
     while end_time > start_time:
@@ -41,6 +48,8 @@ def main():
         # 增加一天
         start_time += timedelta(days=1)
 
+    # 推送到远程仓库
+    subprocess.run(['git', 'push', 'origin', 'master'], check=True)
     print("Done!")
 
 if __name__ == '__main__':
