@@ -23,6 +23,7 @@ def main():
     subprocess.run(config_user_cmd, check=True)
 
     # 克隆仓库
+    subprocess.run(['git', 'config', '--global', '--unset', 'credential.helper'], check=True)
     subprocess.run(['git', 'clone', repo_url, 'repo-folder'], check=True)
     # 进入仓库目录
     os.chdir('repo-folder')
